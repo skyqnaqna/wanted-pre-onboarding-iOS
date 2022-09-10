@@ -21,6 +21,7 @@
 		40D1608B28CC7D1F00E8879B /* NotoSansKR-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40D1608528CC7D1F00E8879B /* NotoSansKR-Bold.otf */; };
 		40D1608C28CC7D1F00E8879B /* NotoSansKR-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40D1608628CC7D1F00E8879B /* NotoSansKR-Thin.otf */; };
 		40D1608E28CC7DA600E8879B /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1608D28CC7DA600E8879B /* Const.swift */; };
+		40D1609028CC91B800E8879B /* DetailWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D1608F28CC91B800E8879B /* DetailWeatherViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		40D1608528CC7D1F00E8879B /* NotoSansKR-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Bold.otf"; sourceTree = "<group>"; };
 		40D1608628CC7D1F00E8879B /* NotoSansKR-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Thin.otf"; sourceTree = "<group>"; };
 		40D1608D28CC7DA600E8879B /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		40D1608F28CC91B800E8879B /* DetailWeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWeatherViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				40D1606A28CC47B900E8879B /* MainViewController.swift */,
+				40D1608F28CC91B800E8879B /* DetailWeatherViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D1609028CC91B800E8879B /* DetailWeatherViewController.swift in Sources */,
 				40D1606B28CC47B900E8879B /* MainViewController.swift in Sources */,
 				40D1607C28CC651E00E8879B /* WeatherCollectionViewCell.swift in Sources */,
 				40D1606728CC47B900E8879B /* AppDelegate.swift in Sources */,

@@ -11,6 +11,9 @@ class WeatherCollectionViewCell: UICollectionViewCell {
   let temperatureSymbol = "℃"
   let humiditySymbol = "%"
 
+  var pressed: ((String) -> ())?
+  var townName = ""
+
   override init(frame: CGRect) {
     super.init(frame: frame)
 
@@ -25,6 +28,7 @@ extension WeatherCollectionViewCell {
   func initViews() {
     let button = UIButton()
     button.setBackgroundImage(UIImage(named: "cardBack"), for: .normal)
+    button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
 
     let weatherIcon = UIImageView()
@@ -33,6 +37,7 @@ extension WeatherCollectionViewCell {
 
     let town = UILabel()
     town.text = "서울"
+    townName = town.text!
     town.font = UIFont(name: Const.Fonts.notoBold, size: 18)
     town.translatesAutoresizingMaskIntoConstraints = false
 
@@ -96,5 +101,12 @@ extension WeatherCollectionViewCell {
       horizontal2.trailingAnchor.constraint(equalTo: horizontal1.trailingAnchor),
       horizontal2.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
     ])
+  }
+}
+
+extension WeatherCollectionViewCell {
+  @objc func buttonPressed() {
+    print("button pressed")
+    pressed!(self.townName)
   }
 }

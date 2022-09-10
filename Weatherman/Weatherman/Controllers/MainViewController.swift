@@ -34,6 +34,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
       cell.initViews()
 
+      cell.pressed = { name in
+        let nextVC = DetailWeatherViewController()
+        nextVC.title = name
+        self.navigationItem.backButtonTitle = "메인"
+        self.navigationItem.backBarButtonItem?.tintColor = .black
+
+        self.navigationController?.pushViewController(nextVC, animated: true)
+      }
+
       return cell
     }
 
@@ -60,4 +69,5 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
     return CGSize(width: width, height: height)
   }
+
 }
