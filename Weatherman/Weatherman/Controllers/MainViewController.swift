@@ -43,6 +43,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 //      cell.townName = weatherData[indexPath.row].name
       cell.weatherInfo = weatherDatas[indexPath.row]
+//      cell.weatherIcon.imageDownload(imageName: weatherDatas[indexPath.row].weather[0].icon)
       cell.updateViews()
 
       cell.pressed = { name in
@@ -99,4 +100,33 @@ extension MainViewController: WeatherManagerDelegate {
     print(error)
   }
 
+}
+
+extension UIImageView {
+  func imageDownload(imageName: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
+
+    let url =  URL(string: "https://openweathermap.org/img/wn/" + imageName + "@2x.png")!
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+
+    URLSession.shared.dataTask(with: request) { data, response, error in
+      guard
+        let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
+        let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+        let data = data, error == nil,
+        let image = UIImage(data: data)
+      else {
+        print("Download image fail : \(url)")
+        return
+      }
+
+      DispatchQueue.main.async() { [weak self] in
+        print("Download image success \(url)")
+
+        self?.contentMode = mode
+        self?.image = image
+      }
+    }.resume()
+  }
 }

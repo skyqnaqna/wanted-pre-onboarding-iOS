@@ -36,6 +36,7 @@ extension WeatherCollectionViewCell {
     town.text = weatherInfo?.name
     temperatureValue.text = String(weatherInfo!.main.temp)
     humidityValue.text = String(weatherInfo!.main.humidity)
+    weatherIcon.imageDownload(imageName: weatherInfo!.weather[0].icon)
 
     townName = town.text ?? "Loading"
   }
