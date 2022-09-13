@@ -11,12 +11,19 @@ class WeatherCollectionViewCell: UICollectionViewCell {
   let temperatureSymbol = "℃"
   let humiditySymbol = "%"
 
+  var weatherInfo: WeatherData?
   var pressed: ((String) -> ())?
   var townName = ""
 
+  // TODO: - Icon 이미지 적용시키기
+  let town = UILabel()
+  let weatherIcon = UIImageView()
+  let temperatureValue = UILabel()
+  let humidityValue = UILabel()
+
   override init(frame: CGRect) {
     super.init(frame: frame)
-
+    initViews()
   }
 
   required init?(coder: NSCoder) {
@@ -25,19 +32,24 @@ class WeatherCollectionViewCell: UICollectionViewCell {
 }
 
 extension WeatherCollectionViewCell {
+  func updateViews() {
+    town.text = weatherInfo?.name
+    temperatureValue.text = String(weatherInfo!.main.temp)
+    humidityValue.text = String(weatherInfo!.main.humidity)
+
+    townName = town.text ?? "Loading"
+  }
+  
   func initViews() {
     let button = UIButton()
     button.setBackgroundImage(UIImage(named: "cardBack"), for: .normal)
     button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
     button.translatesAutoresizingMaskIntoConstraints = false
 
-    let weatherIcon = UIImageView()
     weatherIcon.image = UIImage(systemName: "sun.min")
     weatherIcon.translatesAutoresizingMaskIntoConstraints = false
 
-    let town = UILabel()
-    town.text = "서울"
-    townName = town.text!
+    town.text = "Loading..."
     town.font = UIFont(name: Const.Fonts.notoBold, size: 18)
     town.translatesAutoresizingMaskIntoConstraints = false
 
@@ -46,7 +58,6 @@ extension WeatherCollectionViewCell {
     temperature.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     temperature.translatesAutoresizingMaskIntoConstraints = false
 
-    let temperatureValue = UILabel()
     temperatureValue.text = "?" + temperatureSymbol
     temperatureValue.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     temperatureValue.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +74,6 @@ extension WeatherCollectionViewCell {
     humidity.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     humidity.translatesAutoresizingMaskIntoConstraints = false
 
-    let humidityValue = UILabel()
     humidityValue.text = "?" + humiditySymbol
     humidityValue.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     humidityValue.translatesAutoresizingMaskIntoConstraints = false
