@@ -10,29 +10,40 @@ import UIKit
 class MainViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
+  var weatherManager = WeatherManager()
+  var weatherDatas = [WeatherData]()
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    weatherManager.delegate = self
+    weatherManager.fetchWeather()
     collectionView.delegate = self
     collectionView.dataSource = self
 
     self.navigationItem.title = "Weatherman"
 
     collectionView.register(WeatherCollectionViewCell.self, forCellWithReuseIdentifier: Const.Cells.cardCell)
-  }
 
+  }
 }
 
+// MARK: - CollectionView Data Source, Delegate, DelegateFlowLayout
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 20
+    // FIXME: - 데이터가 19개만 들어오는 현상 고치기
+    return weatherDatas.count
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Const.Cells.cardCell, for: indexPath) as? WeatherCollectionViewCell {
 
-      cell.initViews()
+      if weatherDatas.count <= indexPath.row { return cell }
+
+//      cell.townName = weatherData[indexPath.row].name
+      cell.weatherInfo = weatherDatas[indexPath.row]
+      cell.updateViews()
 
       cell.pressed = { name in
         let nextVC = DetailWeatherViewController()
@@ -68,6 +79,24 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     let height = width * 1.2
 
     return CGSize(width: width, height: height)
+  }
+
+}
+
+// MARK: - WeatherManager Delegate
+extension MainViewController: WeatherManagerDelegate {
+
+  func didUpdateWeather(_ weatherManager: WeatherManager, weather: WeatherData) {
+    print(weather.name, weather.weather[0].description)
+
+    weatherDatas.append(weather)
+    DispatchQueue.main.async {
+      self.collectionView.reloadData()
+    }
+  }
+
+  func didFailWithError(error: Error) {
+    print(error)
   }
 
 }
