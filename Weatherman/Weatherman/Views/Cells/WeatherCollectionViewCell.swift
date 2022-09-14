@@ -8,14 +8,10 @@
 import UIKit
 
 class WeatherCollectionViewCell: UICollectionViewCell {
-  let temperatureSymbol = "℃"
-  let humiditySymbol = "%"
-
   var weatherInfo: WeatherData?
   var pressed: ((String) -> ())?
   var townName = ""
 
-  // TODO: - Icon 이미지 적용시키기
   let town = UILabel()
   let weatherIcon = UIImageView()
   let temperatureValue = UILabel()
@@ -34,8 +30,9 @@ class WeatherCollectionViewCell: UICollectionViewCell {
 extension WeatherCollectionViewCell {
   func updateViews() {
     town.text = weatherInfo?.name
-    temperatureValue.text = String(weatherInfo!.main.temp)
-    humidityValue.text = String(weatherInfo!.main.humidity)
+    temperatureValue.text = weatherInfo!.main.temp.dtos() + Const.Symbols.temp
+    humidityValue.text = String(weatherInfo!.main.humidity) + Const.Symbols.humidity
+    weatherIcon.imageDownload(imageName: weatherInfo!.weather[0].icon)
 
     townName = town.text ?? "Loading"
   }
@@ -58,7 +55,8 @@ extension WeatherCollectionViewCell {
     temperature.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     temperature.translatesAutoresizingMaskIntoConstraints = false
 
-    temperatureValue.text = "?" + temperatureSymbol
+    temperatureValue.text = "???"
+    temperatureValue.textAlignment = .left
     temperatureValue.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     temperatureValue.translatesAutoresizingMaskIntoConstraints = false
 
@@ -74,7 +72,8 @@ extension WeatherCollectionViewCell {
     humidity.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     humidity.translatesAutoresizingMaskIntoConstraints = false
 
-    humidityValue.text = "?" + humiditySymbol
+    humidityValue.text = "???"
+    humidityValue.textAlignment = .left
     humidityValue.font = UIFont(name: Const.Fonts.notoMedium, size: 16)
     humidityValue.translatesAutoresizingMaskIntoConstraints = false
 
