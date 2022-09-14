@@ -64,7 +64,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 13
+    return 10
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -77,7 +77,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    let width = (collectionView.bounds.width - 10) / 2
+    let width = (collectionView.bounds.width - 54) / 2
     let height = width * 1.2
 
     return CGSize(width: width, height: height)
