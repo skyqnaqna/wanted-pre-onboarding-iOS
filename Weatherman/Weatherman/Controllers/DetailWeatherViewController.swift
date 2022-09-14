@@ -191,7 +191,7 @@ extension DetailWeatherViewController {
     view.addSubview(vertical)
 
     NSLayoutConstraint.activate([
-      weatherIcon.widthAnchor.constraint(greaterThanOrEqualToConstant: 129),
+      weatherIcon.widthAnchor.constraint(greaterThanOrEqualToConstant: 100),
       weatherIcon.heightAnchor.constraint(equalTo: weatherIcon.widthAnchor, multiplier: 1),
       horizontal.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
       horizontal.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15),
@@ -201,40 +201,5 @@ extension DetailWeatherViewController {
       vertical.trailingAnchor.constraint(equalTo: horizontal.trailingAnchor),
       vertical.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -15)
     ])
-  }
-}
-
-extension UILabel {
-  func setFont(_ size: CGFloat) {
-    self.font = UIFont(name: Const.Fonts.notoBold, size: size)
-    self.numberOfLines = 0
-    self.textAlignment = .left
-  }
-}
-
-extension UIStackView {
-  func setMargins() {
-    self.layoutMargins = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-    self.isLayoutMarginsRelativeArrangement = true
-  }
-
-  func setBackground () {
-    self.backgroundColor = UIColor(red: 0.962, green: 0.962, blue: 0.962, alpha: 1)
-    self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-    self.layer.shadowRadius = 4
-    self.layer.shadowOpacity = 1
-    self.layer.shadowOffset = CGSize(width: 0, height: 4)
-    self.layer.cornerRadius = 8
-  }
-}
-
-extension UIImageView {
-  func setBackground() {
-    self.backgroundColor = .white
-    self.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
-    self.layer.shadowRadius = 4
-    self.layer.shadowOpacity = 1
-    self.layer.shadowOffset = CGSize(width: 0, height: 4)
-    self.layer.cornerRadius = 8
   }
 }
