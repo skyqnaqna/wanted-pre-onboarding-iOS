@@ -10,6 +10,8 @@ import UIKit
 class MainViewController: UIViewController {
   @IBOutlet weak var collectionView: UICollectionView!
 
+  let refresher = UIRefreshControl()
+
   var weatherManager = WeatherManager()
   var weatherDatas = [WeatherData]()
 
@@ -20,6 +22,11 @@ class MainViewController: UIViewController {
     weatherManager.fetchWeather()
     collectionView.delegate = self
     collectionView.dataSource = self
+
+    refresher.tintColor = UIColor(red:0, green:0, blue:0, alpha:1)
+    refresher.attributedTitle = NSAttributedString(string: "Fetching Weather Data ...", attributes: .none)
+    refresher.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+    collectionView.addSubview(refresher)
 
     self.navigationItem.title = "Weatherman"
 
@@ -94,6 +101,7 @@ extension MainViewController: WeatherManagerDelegate {
     weatherDatas.append(weather)
     DispatchQueue.main.async {
       self.collectionView.reloadData()
+      self.refresher.endRefreshing()
     }
   }
 
@@ -101,4 +109,13 @@ extension MainViewController: WeatherManagerDelegate {
     print(error)
   }
 
+}
+
+extension MainViewController {
+  @objc func pullToRefresh() {
+    refresher.beginRefreshing()
+
+    weatherDatas.removeAll()
+    weatherManager.fetchWeather()
+  }
 }
