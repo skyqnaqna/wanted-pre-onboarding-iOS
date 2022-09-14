@@ -40,7 +40,7 @@ extension DetailWeatherViewController {
     weatherIcon.translatesAutoresizingMaskIntoConstraints = false
 
     temp.setFont(20)
-    temp.text = String(weatherInfo!.main.temp)
+    temp.text = weatherInfo!.main.temp.dtos() + Const.Symbols.temp
     temp.translatesAutoresizingMaskIntoConstraints = false
 
     let tempHead = UILabel()
@@ -56,11 +56,11 @@ extension DetailWeatherViewController {
     vertical1.translatesAutoresizingMaskIntoConstraints = false
 
     feelTemp.setFont(20)
-    feelTemp.text = String(weatherInfo!.main.feels_like)
+    feelTemp.text = weatherInfo!.main.feels_like.dtos() + Const.Symbols.temp
     feelTemp.translatesAutoresizingMaskIntoConstraints = false
 
     let feelTempHead = UILabel()
-    feelTempHead.text = "현재 기온"
+    feelTempHead.text = "체감 기온"
     feelTempHead.setFont(17)
     feelTempHead.translatesAutoresizingMaskIntoConstraints = false
 
@@ -79,7 +79,7 @@ extension DetailWeatherViewController {
     horizontal.translatesAutoresizingMaskIntoConstraints = false
 
     humidity.setFont(17)
-    humidity.text = String(weatherInfo!.main.humidity)
+    humidity.text = String(weatherInfo!.main.humidity) + Const.Symbols.humidity
     humidity.translatesAutoresizingMaskIntoConstraints = false
 
     let humidityHead = UILabel()
@@ -96,7 +96,7 @@ extension DetailWeatherViewController {
     horizontal1.translatesAutoresizingMaskIntoConstraints = false
 
     minTemp.setFont(17)
-    minTemp.text = String(weatherInfo!.main.temp_min)
+    minTemp.text = weatherInfo!.main.temp_min.dtos() + Const.Symbols.temp
     minTemp.translatesAutoresizingMaskIntoConstraints = false
 
     let minTempHead = UILabel()
@@ -113,7 +113,7 @@ extension DetailWeatherViewController {
     horizontal2.translatesAutoresizingMaskIntoConstraints = false
 
     maxTemp.setFont(17)
-    maxTemp.text = String(weatherInfo!.main.temp_max)
+    maxTemp.text = weatherInfo!.main.temp_max.dtos() + Const.Symbols.temp
     maxTemp.translatesAutoresizingMaskIntoConstraints = false
 
     let maxTempHead = UILabel()
@@ -130,7 +130,7 @@ extension DetailWeatherViewController {
     horizontal3.translatesAutoresizingMaskIntoConstraints = false
 
     pressure.setFont(17)
-    pressure.text = String(weatherInfo!.main.pressure)
+    pressure.text = String(weatherInfo!.main.pressure) + Const.Symbols.pressure
     pressure.translatesAutoresizingMaskIntoConstraints = false
 
     let pressureHead = UILabel()
@@ -147,7 +147,7 @@ extension DetailWeatherViewController {
     horizontal4.translatesAutoresizingMaskIntoConstraints = false
 
     wind.setFont(17)
-    wind.text = String(weatherInfo!.wind.speed)
+    wind.text = weatherInfo!.wind.speed.dtos() + Const.Symbols.wind
     wind.translatesAutoresizingMaskIntoConstraints = false
 
     let windHead = UILabel()

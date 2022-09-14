@@ -45,4 +45,11 @@ struct Const {
       "chuncheon": 1845136
     ]
   }
+
+  struct Symbols {
+    static let temp = " ℃"
+    static let humidity = " %"
+    static let pressure = " hPa"
+    static let wind = " m/s"
+  }
 }

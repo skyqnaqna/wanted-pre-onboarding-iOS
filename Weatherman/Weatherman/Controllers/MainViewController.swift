@@ -41,19 +41,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
       if weatherDatas.count <= indexPath.row { return cell }
 
-//      cell.townName = weatherData[indexPath.row].name
       cell.weatherInfo = weatherDatas[indexPath.row]
-//      cell.weatherIcon.imageDownload(imageName: weatherDatas[indexPath.row].weather[0].icon)
       cell.updateViews()
 
       cell.pressed = { name in
         let nextVC = DetailWeatherViewController()
         nextVC.title = name
         nextVC.weatherInfo = self.weatherDatas[indexPath.row]
-//        nextVC.updateViews()
 
-        self.navigationItem.backButtonTitle = "메인"
-        self.navigationItem.backBarButtonItem?.tintColor = .black
+        self.navigationItem.backButtonTitle = "Main"
+        self.navigationController?.navigationBar.tintColor = .black
+//        self.navigationItem.backBarButtonItem?.tintColor = .black
 
         self.navigationController?.pushViewController(nextVC, animated: true)
       }
