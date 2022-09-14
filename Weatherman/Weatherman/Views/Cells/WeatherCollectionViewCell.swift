@@ -15,7 +15,6 @@ class WeatherCollectionViewCell: UICollectionViewCell {
   var pressed: ((String) -> ())?
   var townName = ""
 
-  // TODO: - Icon 이미지 적용시키기
   let town = UILabel()
   let weatherIcon = UIImageView()
   let temperatureValue = UILabel()

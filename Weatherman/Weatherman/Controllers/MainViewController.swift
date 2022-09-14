@@ -49,6 +49,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
       cell.pressed = { name in
         let nextVC = DetailWeatherViewController()
         nextVC.title = name
+        nextVC.weatherInfo = self.weatherDatas[indexPath.row]
+//        nextVC.updateViews()
+
         self.navigationItem.backButtonTitle = "메인"
         self.navigationItem.backBarButtonItem?.tintColor = .black
 
